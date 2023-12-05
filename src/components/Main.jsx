@@ -27,6 +27,13 @@ const Main = () => {
     return null; // or render a loading state
   }
 
+  const handlePlayButtonClick = () => {
+    // Assuming you want to search on YouTube using the movie title
+    const searchQuery = encodeURIComponent(movie.title);
+    const youtubeSearchURL = `https://www.youtube.com/results?search_query=${searchQuery}`;
+    window.open(youtubeSearchURL, "_blank");
+  };
+
   return (
     <div className="w-full h-[500px] text-white">
       <div className="w-full h-full">
@@ -39,7 +46,10 @@ const Main = () => {
         <div className="absolute top-1/4 p-4 w-full md:p-8">
           <h1 className="mb-3 text-2xl font-bold sm:text-3xl">{movie.title}</h1>
           <div className="flex mb-3 space-x-4">
-            <button className="flex items-center py-1 px-2 text-black border sm:px-4 bg-slate-200 border-slate-200">
+            <button
+              className="flex items-center py-1 px-2 text-black border sm:px-4 bg-slate-200 border-slate-200"
+              onClick={handlePlayButtonClick}
+            >
               <BsPlayFill className="mr-1 w-6 h-8" />
               Play
             </button>
