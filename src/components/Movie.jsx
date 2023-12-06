@@ -1,16 +1,18 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { arrayUnion, doc, updateDoc } from "firebase/firestore";
 
 const Movie = ({ id, item }) => {
-  const [like, setLike] = useState(false);
-  const [saved, setSaved] = useState(false);
+  const [like, setLike] = React.useState(false);
+  const [saved, setSaved] = React.useState(false);
   const { user } = UserAuth();
 
   const movieID = doc(db, "users", `${user?.email}`);
-  const saveMovie = async () => {
+  const saveMovie = async (event) => {
+    event.stopPropagation();
+
     if (user?.email) {
       setLike(!like);
       setSaved(true);
@@ -26,10 +28,19 @@ const Movie = ({ id, item }) => {
     }
   };
 
+  const handleClick = () => {
+    const youtubeURL = `https://www.youtube.com/results?search_query=${encodeURIComponent(
+      item.title
+    )}`;
+
+    window.open(youtubeURL, "_blank");
+  };
+
   return (
     <div
       className="lg:w-[345px] w-[200px] md:w-[240px] inline-block relative p-2 cursor-pointer"
       key={id}
+      onClick={handleClick}
     >
       <img
         className="block w-full h-auto"
