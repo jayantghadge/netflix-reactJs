@@ -38,6 +38,10 @@ Once the development server has started, the Netflix Clone will open in your def
 
 To add a movie or TV show to your watchlist, click on the "like" button on top left. You can manage your watchlist by clicking on the account button.
 
+### Watching Trailers
+
+Clicking on a particular movie will redirect you to it's trailer or a related video on YouTube.
+
 ## Features
 
 - Browse and search for movies
